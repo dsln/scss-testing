@@ -1,0 +1,44 @@
+$blue: blue;
+$cyan: cyan;
+$grey: grey;
+$red: crush;
+$orange: blaze;
+$yellow: sunset, 60;
+$green: seafoam;
+$light-green: seaweed;
+$dark-green: marine;
+$brown: brown;
+$purple: purple;
+$sunset: sunset;
+$pink: pink;
+
+$colors: (
+    blue: (5: #f3fbfe, 10: #e2f4fb, 20: #bae5f5, 40: #71c8f1, 60: #32b6e9, 80: #0099d3, 100: #0074aa, 120: #064c7c),
+    crush: (5: #fff7f6, 10: #fef0ed, 20: #fddfdc, 40: #fac1ba, 60: #f48272, 80: #f1614f, 100: #e32722, 120: #a71e22),
+    cyan: (5: #f2f9f9, 10: #e6f4f4, 20: #cceaea, 40: #9ad7d6, 60: #68c5c4, 80: #36b1b0, 100: #029f9d, 120: #026f6f),
+    blaze: (5: #fff7f3, 10: #fff1e9, 20: #fce1d3, 40: #fcc5a7, 60: #f7a77b, 80: #f6894d, 100: #f26b21, 120: #b73e25),
+    grey: (5: #fafbfb, 10: #eceff0, 20: #e4e7e9, 40: #a8b2b7, 60: #828d93, 80: #5B6670, 100: #3d464d, 120: #141e25),
+    seafoam: (5: #eff9f8, 10: #e4f7f3, 20: #cfede8, 40: #a5eadb, 60: #61d6b8, 80: #2fd2a8, 100: #1ead8a, 120: #0b705d),
+    seaweed: (5: #f8fbf6, 10: #f2f8ed, 20: #e3f0d9, 40: #cbe4b5, 60: #b0d78e, 80: #95cb6a, 100: #7ac142, 120: #499142),
+    marine: (5: #f7f9f3, 10: #f1f4e8, 20: #e4ead2, 40: #cbd9a7, 60: #bfdb85, 80: #aed255, 100: #7aa13e, 120: #4c7336),
+    pebble: (5: #fbfcfc, 10: #f5f6f6, 20: #e9e8e9, 40: #d5d4d5, 60: #aaaaab, 80: #7c7c81, 100: #545355, 120: #28272b),
+    sunset: (5: #fffdee, 10: #fffbdb, 20: #fdf7b4, 40: #fff57e, 60: #fff100, 80: #fbad1c, 100: #f47f1f, 120: #c95428),
+    brown: (5: #f7f4f2, 10: #eae4e1, 20: #d8cecb, 40: #baaba5, 60: #96837c, 80: #775d53, 100: #59382c, 120: #2f180d),
+    purple: (5: #f2eff7, 10: #e8dfef, 20: #d7c9e3, 40: #c1aed5, 60: #a085be, 80: #7b61aa, 100: #664fa1, 120: #422e85),
+    pink: (5: #fef4f8, 10: #fce7ef, 20: #fadae1, 40: #f4a2c2, 60: #ed73a4, 80: #e94586, 100: #e31567, 120: #ab1d41)
+);
+
+@function soti-color($color, $value: 100) {
+    $selectedColor: $color;
+
+    @if (type-of($color) == 'list') {
+        $selectedColor: nth($color, 1);
+        $value: nth($color, 2);
+    }
+
+    $color-map: map-get($colors, $selectedColor);
+    @if ($color-map == null) {
+        @error $selectedColor + ' is not part of the color palette';
+    }
+    @return map-get($color-map, $value);
+}

@@ -1,0 +1,14 @@
+@import 'variables';
+
+$primary-color: $cyan;
+
+
+@import 'colors';
+@import 'buttons';
+
+.button-primary {
+    background-color: $primary-background;
+    &:hover {
+        background-color: $primary-hover;
+    }
+}
